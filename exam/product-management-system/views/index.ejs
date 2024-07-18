@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Product Management</h1>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>Product Code</th>
+                    <th>Product Name</th>
+                    <th>Production Date</th>
+                    <th>Original Price</th>
+                    <th>Quantity</th>
+                    <th>Store Code</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.ProductCode %></td>
+                        <td><%= product.ProductName %></td>
+                        <td><%= product.ProductDate.toDateString() %></td>
+                        <td><%= product.ProductOriginPrice %></td>
+                        <td><%= product.Quantity %></td>
+                        <td><%= product.ProductStoreCode %></td>
+                        <td>
+                            <form action="/delete/<%= product._id %>" method="POST">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <a href="/form" class="btn btn-primary">Add New Product</a>
+    </div>
+</body>
+</html>
